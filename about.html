@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — EduAware SA</title>
+  <meta name="description" content="About EduAware SA: mission, team, values, and how we support communities across South Africa." />
+  <meta name="theme-color" content="#e50019" />
+  <style>
+    :root{
+      --red-900:#8d0010; --red-800:#b30015; --red-700:#cc0017; --red-600:#e50019; --red-500:#ff1f2d;
+      --red-100:#ffe6e8; --bg:#ffffff; --text:#0e0e0e; --muted:#666; --card:#fff; --border:#eee;
+      --shadow:0 6px 24px rgba(0,0,0,.08); --radius:14px; --focus:0 0 0 3px rgba(229,0,25,.35)
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; color:var(--text); background:var(--bg)}
+    a{color:var(--red-700); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
+
+    /* Header */
+    header{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); background:rgba(255,255,255,.85); border-bottom:1px solid var(--border)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:10px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px}
+    .logo{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; color:#fff; font-weight:900;
+      background:radial-gradient(120% 120% at 20% 20%, var(--red-500), var(--red-700)); box-shadow:0 8px 22px rgba(229,0,25,.35)}
+    nav ul{display:flex; gap:16px; list-style:none; padding:0; margin:0; flex-wrap:wrap}
+    nav a{padding:8px 12px; border-radius:999px; font-weight:600; color:var(--text)}
+    nav a.active, nav a:hover{background:var(--red-100); color:var(--red-800); text-decoration:none}
+
+    /* Hero */
+    .hero{background:linear-gradient(135deg, var(--red-600), var(--red-900)); color:#fff; padding:48px 0 34px}
+    .kicker{display:inline-block; background:#fff; color:var(--red-800); padding:6px 12px; border-radius:999px; font-weight:800; font-size:12px; letter-spacing:.4px}
+    h1{margin:12px 0 8px; font-size:clamp(28px, 4vw, 44px); line-height:1.08}
+    .lead{color:#ffeef0; font-size:clamp(14px,2.2vw,18px); max-width:60ch}
+
+    /* Sections */
+    .section{padding:34px 0}
+    .muted{color:var(--muted); font-size:14px}
+    .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow)}
+    .card h3{margin:6px 0 6px}
+    .badge{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:800; color:var(--red-800); background:var(--red-100); padding:6px 10px; border-radius:999px}
+
+    /* Timeline */
+    .timeline{margin:8px 0 0; border-left:3px solid var(--red-100); padding-left:14px}
+    .timeline li{margin:8px 0}
+
+    /* Team */
+    .team{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .member{display:grid; gap:8px; align-content:start}
+    .avatar{width:72px; height:72px; border-radius:50%; background:#f3f3f3; display:grid; place-items:center; font-weight:800; color:var(--red-800); border:1px solid var(--border)}
+
+    /* FAQ */
+    .faq{display:grid; gap:10px}
+    details{border:1px solid var(--border); border-radius:12px; background:#fff; box-shadow:var(--shadow)}
+    summary{cursor:pointer; padding:12px 14px; font-weight:700}
+    details > div{padding:0 14px 14px}
+
+    /* CTA bar */
+    .bar{margin:28px 0 12px; padding:12px; border:1px dashed #ffb5bb; background:#fff; border-radius:var(--radius); display:flex; gap:12px; align-items:flex-start}
+    .bar strong{color:var(--red-800)}
+    .btn{appearance:none; border:0; cursor:pointer; font-weight:800; letter-spacing:.3px; padding:12px 16px; border-radius:12px}
+    .btn-primary{background:var(--red-600); color:#fff}
+    .btn-ghost{background:#fff; border:1px solid var(--border); color:var(--text)}
+
+    /* Footer */
+    .footer{background:#fafafa; border-top:1px solid var(--border); padding:20px 0; color:#333}
+
+    /* Responsive */
+    @media (max-width:980px){ .cards{grid-template-columns:1fr 1fr} .team{grid-template-columns:1fr 1fr} }
+    @media (max-width:640px){ nav ul{display:none} .cards,.team{grid-template-columns:1fr} }
+    :focus-visible{outline:none; box-shadow:var(--focus)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav" role="navigation" aria-label="Main">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">EA</div>
+        <div>EduAware <span style="color:var(--red-800)">SA</span></div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html#home" class="active">Home</a></li>
+          <li><a href="index.html#topics">Topics</a></li>
+          <li><a href="index.html#resources">Resources</a></li>
+          <li><a href="#">About</a></li>
+          <li><a class="btn btn-primary" href="index.html#home">Get Help</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">About EduAware SA</span>
+      <h1>Our mission is simple: clear info, quick help, real support.</h1>
+      <p class="lead">We’re a small South African team committed to making it easier to learn, report, and get assistance on Education, Bullying, GBVF, Teen Pregnancy, Substance Abuse, and HIV.</p>
+    </div>
+  </section>
+
+  <main>
+    <!-- Mission / Vision / Approach -->
+    <section class="section">
+      <div class="wrap">
+        <div class="cards" aria-label="Mission, Vision, Approach">
+          <article class="card">
+            <span class="badge">Mission</span>
+            <h3>Make help easy to find</h3>
+            <p class="muted">We organise reliable information, verified helplines, and practical steps so families and learners can act fast when it matters.</p>
+          </article>
+          <article class="card">
+            <span class="badge">Vision</span>
+            <h3>Stronger, safer communities</h3>
+            <p class="muted">Every school and household should have simple tools to learn, report, and get support — online or in person.</p>
+          </article>
+          <article class="card">
+            <span class="badge">Approach</span>
+            <h3>Local, accessible, human</h3>
+            <p class="muted">Plain language, SA-focused links, and real people behind the screen. We keep content short, accurate, and action-oriented.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story / Timeline -->
+    <section class="section">
+      <div class="wrap">
+        <div class="cards">
+          <article class="card" style="grid-column:1/-1">
+            <h3>Our story</h3>
+            <p class="muted">EduAware SA started as a simple idea: put trustworthy guidance in one place and make it easy to contact people who care. From a small pilot site, we’re growing with partners, schools, and volunteers.</p>
+            <ul class="timeline">
+              <li><strong>2024:</strong> Pilot launched with core topics and a help-modal.</li>
+              <li><strong>2025:</strong> Expanding verified helplines, clinic maps, and reporting pathways.</li>
+              <li><strong>Next:</strong> Multi-language support and WhatsApp help flow.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="section">
+      <div class="wrap">
+        <h2>Our values</h2>
+        <div class="cards">
+          <article class="card"><h3>Respect</h3><p class="muted">Dignity first. We speak with care and protect privacy.</p></article>
+          <article class="card"><h3>Accuracy</h3><p class="muted">We link to verified SA sources and review content regularly.</p></article>
+          <article class="card"><h3>Action</h3><p class="muted">Clear next steps over noise. Simple choices when stress is high.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team (placeholder profiles) -->
+    <section class="section" aria-labelledby="team-title">
+      <div class="wrap">
+        <h2 id="team-title">Meet the team</h2>
+        <p class="muted">Add your real names, roles, and photos here (or keep initials for privacy).</p>
+        <div class="team">
+          <article class="card member">
+            <div class="avatar" aria-hidden="true">MN</div>
+            <div>
+              <strong>Maria N.</strong> — Director
+              <p class="muted">Community partnerships, programme direction.</p>
+            </div>
+          </article>
+          <article class="card member">
+            <div class="avatar" aria-hidden="true">TK</div>
+            <div>
+              <strong>Thabo K.</strong> — Counselling Lead
+              <p class="muted">Helpline workflow, referral networks, safeguarding.</p>
+            </div>
+          </article>
+          <article class="card member">
+            <div class="avatar" aria-hidden="true">IT</div>
+            <div>
+              <strong>Itumeleng T.</strong> — Web & Content
+              <p class="muted">Site updates, resources, and digital tools.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" aria-labelledby="faq-title">
+      <div class="wrap">
+        <h2 id="faq-title">FAQ</h2>
+        <div class="faq">
+          <details>
+            <summary>Is advice on this site professional counselling?</summary>
+            <div><p class="muted">No. We provide general guidance and links to verified services. For emergencies or clinical support, contact professionals directly.</p></div>
+          </details>
+          <details>
+            <summary>Can I contact your team privately?</summary>
+            <div><p class="muted">Yes. Use the “Get Help” button or email us. We’ll connect you with appropriate services. Don’t include sensitive details in the first message.</p></div>
+          </details>
+          <details>
+            <summary>Do you operate nationwide?</summary>
+            <div><p class="muted">We focus on South Africa and aim to include province-specific resources where possible.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="section">
+      <div class="wrap">
+        <div class="bar" role="note" aria-live="polite">
+          <div>❤</div>
+          <div>
+            <strong>Need to speak to someone?</strong> Our team is here to listen and guide you toward verified support.
+            <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap">
+              <a class="btn btn-primary" href="index.html#home">Get Help</a>
+              <a class="btn btn-ghost" href="mailto:contact@example.org">Email us</a>
+            </div>
+          </div>
+        </div>
+        <p class="muted">Replace placeholder email/contacts with your official addresses and numbers before launch.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+      <div>© <span id="year"></span> EduAware SA — About</div>
+      <div><a class="btn btn-primary" href="index.html">Back to Home</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Optional: set active nav if this file is used as a stand-alone page
+    const setActive = () => {
+      const link = document.querySelector('nav a[href$="about.html"]');
+      link && link.classList.add('active');
+    };
+    setActive();
+  </script>
+</body>
+</html>

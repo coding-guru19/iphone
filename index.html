@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EduAware SA — National Awareness</title>
+  <meta name="description" content="National awareness hub on Education, Bullying, GBV, Teen Pregnancy, Substance Abuse, and HIV." />
+  <meta name="theme-color" content="#e50019" />
+  <style>
+    :root{
+      --red-900:#8d0010;
+      --red-800:#b30015;
+      --red-700:#cc0017;
+      --red-600:#e50019;
+      --red-500:#ff1f2d;
+      --red-100:#ffe6e8;
+      --bg:#ffffff;
+      --text:#0e0e0e;
+      --muted:#666;
+      --card:#ffffff;
+      --border:#eee;
+      --shadow:0 6px 24px rgba(0,0,0,.08);
+      --radius:14px;
+      --focus: 0 0 0 3px rgba(229,0,25,.35);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      color:var(--text); background:var(--bg);
+    }
+    a{color:var(--red-700); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .skip{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;}
+    .skip:focus{left:16px; top:16px; width:auto; height:auto; background:#fff; padding:10px 14px; border-radius:8px; box-shadow:var(--focus)}
+
+    /* Header / Nav */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(10px);
+      background:rgba(255,255,255,.85); border-bottom:1px solid var(--border);
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding:0 16px;}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:10px 0;}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px;}
+    .logo{
+      width:36px; height:36px; border-radius:10px;
+      background: radial-gradient(120% 120% at 20% 20%, var(--red-500), var(--red-700));
+      display:grid; place-items:center; color:#fff; font-weight:900;
+      box-shadow:0 8px 22px rgba(229,0,25,.35);
+    }
+    nav ul{display:flex; gap:16px; list-style:none; padding:0; margin:0; flex-wrap:wrap;}
+    nav a{
+      padding:8px 12px; border-radius:999px; font-weight:600; color:var(--text);
+    }
+    nav a.active, nav a:hover{background:var(--red-100); color:var(--red-800); text-decoration:none}
+
+    /* HERO */
+    .hero{
+      position:relative;
+      background: linear-gradient(135deg, var(--red-600), var(--red-900));
+      color:#fff; padding:46px 0 34px;
+      overflow:hidden;
+    }
+    .hero::after{
+      content:""; position:absolute; inset:auto -10% 0 -10%; height:140px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+      border-top-left-radius:50% 100px; border-top-right-radius:50% 100px;
+      filter:blur(0.5px);
+    }
+    .hero .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:22px; align-items:center;}
+    .kicker{display:inline-block; background:#fff; color:var(--red-800); padding:6px 12px; border-radius:999px; font-weight:800; letter-spacing:.4px; font-size:12px;}
+    h1{margin:12px 0 8px; font-size: clamp(28px, 4vw, 44px); line-height:1.08}
+    .lead{color:#ffeef0; font-size:clamp(14px, 2.2vw, 18px); max-width:52ch}
+    .hero-cta{display:flex; gap:12px; margin-top:14px; flex-wrap:wrap}
+    .btn{
+      appearance:none; border:0; cursor:pointer; font-weight:800; letter-spacing:.3px;
+      padding:12px 16px; border-radius:12px; transition:.2s transform, .2s box-shadow;
+    }
+    .btn-primary{background:#fff; color:var(--red-800);}
+    .btn-primary:hover{transform:translateY(-1px); box-shadow:0 10px 22px rgba(0,0,0,.12)}
+    .btn-ghost{background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.35)}
+    .btn-ghost:hover{transform:translateY(-1px); box-shadow:0 10px 22px rgba(0,0,0,.12)}
+
+    .pill-grid{display:grid; grid-template-columns:repeat(6, 1fr); gap:10px; margin-top:10px}
+    .pill{
+      background:#fff; color:var(--red-800); font-weight:700; text-align:center; border-radius:999px; padding:10px 8px; border:1px solid #ffd2d6;
+    }
+
+    .section{padding:34px 0}
+    .cards{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;}
+    .card{
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow);
+    }
+    .card h3{margin:6px 0 6px;}
+    .muted{color:var(--muted); font-size:14px}
+    .topic-tag{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:800; color:var(--red-800); background:var(--red-100); padding:6px 10px; border-radius:999px;}
+
+    .topics-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:10px}
+    .topic{
+      border:1px solid var(--border); border-radius:var(--radius); padding:16px; background:#fff; box-shadow:var(--shadow)
+    }
+    .topic h2{margin:0 0 6px}
+    .topic ul{margin:8px 0 0 18px}
+    .topic .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+
+    .resources{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px}
+    .res{border:1px solid var(--border); border-radius:var(--radius); padding:16px; background:#fff; box-shadow:var(--shadow)}
+    .res h4{margin:6px 0}
+    .res a{word-break:break-word}
+
+    .bar{
+      margin:28px 0 12px; padding:12px;
+      border:1px dashed #ffb5bb; background:#fff; border-radius:var(--radius);
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .bar strong{color:var(--red-800)}
+
+    .footer{
+      background:#fafafa; border-top:1px solid var(--border); padding:20px 0; color:#333;
+    }
+
+    /* Modal */
+    dialog{
+      border:none; padding:0; border-radius:16px; width:min(680px, 92vw); box-shadow:0 30px 70px rgba(0,0,0,.35);
+    }
+    .modal{display:grid; grid-template-columns:1fr; gap:0;}
+    .modal-head{
+      background: linear-gradient(135deg, var(--red-600), var(--red-900));
+      color:#fff; padding:16px 16px 12px; border-top-left-radius:16px; border-top-right-radius:16px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .modal-body{padding:14px}
+    .modal-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:12px}
+    .input, textarea{
+      width:100%; padding:12px; border:1px solid var(--border); border-radius:10px; font:inherit;
+    }
+    .close-x{appearance:none; border:0; background:transparent; color:#fff; font-size:22px; cursor:pointer; margin-left:auto;}
+
+    /* Images / Thumbs / Gallery */
+    .hero-art{
+      width:100%; max-width:520px; border-radius:16px;
+      box-shadow:0 18px 50px rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.25);
+      transform:rotate(-1deg);
+      margin-bottom:14px;
+    }
+    .topic .thumb{
+      width:100%; height:160px; object-fit:cover;
+      border-radius:12px; margin-bottom:10px;
+      border:1px solid var(--border); box-shadow:var(--shadow);
+    }
+    .gallery{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;}
+    .gallery img{
+      width:100%; height:180px; object-fit:cover; border-radius:12px;
+      border:1px solid var(--border); box-shadow:var(--shadow);
+    }
+
+    /* NEW: hamburger (hidden on desktop) */
+    .menu-toggle{
+      display:none; appearance:none; border:1px solid var(--border);
+      background:#fff; border-radius:10px; padding:8px 10px; font-size:18px;
+      line-height:1; cursor:pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero .grid{grid-template-columns:1fr}
+      .pill-grid{grid-template-columns:repeat(3,1fr)}
+      .cards{grid-template-columns:1fr 1fr}
+      .topics-grid{grid-template-columns:1fr}
+      .resources{grid-template-columns:1fr 1fr}
+    }
+
+    /* Unified mobile rules */
+    @media (max-width: 640px){
+      .menu-toggle{display:inline-block;}
+
+      /* dropdown panel for nav on mobile */
+      header nav ul{
+        display:none; position:absolute; right:16px; top:58px;
+        background:#fff; border:1px solid var(--border); border-radius:12px;
+        box-shadow:var(--shadow); padding:8px; margin:0; gap:6px; width:min(92vw, 340px);
+        flex-direction:column;
+      }
+      header.open nav ul{display:flex;}
+      header nav a, header nav .btn{width:100%; text-align:left;}
+
+      .cards{grid-template-columns:1fr}
+      .resources{grid-template-columns:1fr}
+      .pill-grid{grid-template-columns:repeat(2,1fr)}
+      .gallery{grid-template-columns:1fr}
+    }
+
+    :focus-visible{outline:none; box-shadow:var(--focus)}
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip">Skip to content</a>
+
+  <header>
+    <div class="wrap nav" role="navigation" aria-label="Main">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">EA</div>
+        <div>EduAware <span style="color:var(--red-800)">SA</span></div>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainmenu">☰</button>
+
+      <nav>
+        <ul id="mainmenu">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#topics">Topics</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><button class="btn" style="background:var(--red-600); color:#fff" data-help>Get Help</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="wrap grid">
+        <div>
+          <span class="kicker">Red & White National Awareness</span>
+          <h1>Learn • Prevent • Get Help</h1>
+          <p class="lead">A simple hub for families, learners and communities covering <strong>Education</strong>, <strong>Bullying</strong>, <strong>GBV</strong>, <strong>Teen Pregnancy</strong>, <strong>Substance Abuse</strong> and <strong>HIV</strong>.</p>
+          <div class="hero-cta">
+            <a href="#topics" class="btn btn-primary">Explore Topics</a>
+            <button class="btn btn-ghost" data-help>Talk to US</button>
+          </div>
+          <div class="pill-grid" aria-label="Quick topic links">
+            <a class="pill" href="#education">Education</a>
+            <a class="pill" href="#bullying">Bullying</a>
+            <a class="pill" href="#gbv">GBVF</a>
+            <a class="pill" href="#teen">Teen Pregnancy</a>
+            <a class="pill" href="#substance">Substance Abuse</a>
+            <a class="pill" href="#hiv">HIV/ AID</a>
+          </div>
+        </div>
+        <div>
+          <img class="hero-art" src="learners.jpeg" alt="Learners and families seeking support and education resources" loading="lazy" decoding="async">
+
+          <div class="cards" aria-label="Key actions">
+            <article class="card">
+              <span class="topic-tag">Stay In School</span>
+              <h3>Education support</h3>
+              <p class="muted">Study habits, free resources, and bursary links to keep learners on track.</p>
+              <a href="#education">Learn more →</a>
+            </article>
+            <article class="card">
+              <span class="topic-tag">Safe Spaces</span>
+              <h3>Stop bullying</h3>
+              <p class="muted">Know your rights. Steps to report bullying at school and online.</p>
+              <a href="#bullying">Learn more →</a>
+            </article>
+            <article class="card">
+              <span class="topic-tag">You’re Not Alone</span>
+              <h3>Get confidential help</h3>
+              <p class="muted">Speak to someone you trust. You can also reach out to our dedicated team for guidance and support — we’re here to listen and help.</p>
+              <button class="btn" style="background:var(--red-600); color:#fff" data-help>Get Help</button>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICS -->
+    <section id="topics" class="section">
+      <div class="wrap">
+        <h2>Topics</h2>
+        <p class="muted">Replace placeholder helplines with verified local numbers before launch.</p>
+
+        <div class="topics-grid">
+          <article id="education" class="topic" aria-labelledby="t-edu">
+            <img class="thumb" src="studing.jpg" alt="Student studying with books and laptop" loading="lazy" decoding="async">
+            <h2 id="t-edu">Keep Learning on Track</h2>
+            <span class="topic-tag">Education</span>
+            <ul>
+              <li>Create a 30–60 minute daily study block; phone in another room.</li>
+              <li>Use free resources (past papers, YouTube explainers, library Wi-Fi).</li>
+              <li>Ask teachers for a term plan and check progress weekly.</li>
+              <li>Find a study buddy or weekend community class.</li>
+            </ul>
+            <div class="actions">
+              <a class="btn" href="#resources">Find resources</a>
+              <button class="btn" style="background:var(--red-600); color:#fff" data-help>we are here to support</button>
+            </div>
+          </article>
+
+          <article id="bullying" class="topic" aria-labelledby="t-bully">
+            <img class="thumb" src="supervising.jpg" alt="School corridor and learners with teacher supervision" loading="lazy" decoding="async">
+            <h2 id="t-bully">See it. Name it. Stop it.</h2>
+            <span class="topic-tag">Bullying</span>
+            <ul>
+              <li>Document dates/screenshots. Don’t respond with violence.</li>
+              <li>Report to a teacher/grade head. Escalate to principal if needed.</li>
+              <li>Block/report cyberbullying and keep evidence.</li>
+              <li>Ask for a safety plan: seating changes, supervision, check-ins.</li>
+            </ul>
+            <div class="actions">
+              <button class="btn" style="background:var(--red-600); color:#fff" data-help>we are here to help you</button>
+              <a class="btn" href="#resources">Report channels</a>
+            </div>
+          </article>
+
+          <article id="gbv" class="topic" aria-labelledby="t-gbv">
+            <img class="thumb" src="GBVF.jpg" alt="Support hands symbolising help against GBV" loading="lazy" decoding="async">
+            <h2 id="t-gbv">Gender-Based Violence</h2>
+            <span class="topic-tag">GBVF</span>
+            <ul>
+              <li>If in danger: get to a safe place. Call emergency services.</li>
+              <li>Tell someone you trust. Save evidence (photos, messages).</li>
+              <li>Seek medical care within 72h for injuries or PEP.</li>
+              <li>Apply for a protection order; ask a counsellor for guidance.</li>
+            </ul>
+            <div class="actions">
+              <button class="btn" style="background:var(--red-600); color:#fff" data-help>come to us we are here to listen</button>
+              <a class="btn" href="#resources">Shelters & legal aid</a>
+            </div>
+          </article>
+
+          <article id="teen" class="topic" aria-labelledby="t-teen">
+            <img class="thumb" src="THERE THERE.jpg" alt="Clinic consultation and teen support" loading="lazy" decoding="async">
+            <h2 id="t-teen">Support, not shame</h2>
+            <span class="topic-tag">Teen Pregnancy</span>
+            <ul>
+              <li>Book a clinic visit early for antenatal checks.</li>
+              <li>Ask the school for continued-learning arrangements.</li>
+              <li>Get info on rights, grants, and parenting support.</li>
+              <li>If not pregnant: learn contraception options and consent.</li>
+            </ul>
+            <div class="actions">
+              <a class="btn" href="#resources">Clinics & info</a>
+              <button class="btn" style="background:var(--red-600); color:#fff" data-help>Come talk with us</button>
+            </div>
+          </article>
+
+          <article id="substance" class="topic" aria-labelledby="t-sub">
+            <img class="thumb" src="DRUGS.jpeg" alt="Recovery journey and counselling support" loading="lazy" decoding="async">
+            <h2 id="t-sub">Break the loop</h2>
+            <span class="topic-tag">Substance Abuse</span>
+            <ul>
+              <li>Tell one trusted person and remove immediate triggers.</li>
+              <li>Swap the habit window with exercise or chores.</li>
+              <li>Use counselling/support groups; ask about rehab referrals.</li>
+              <li>Track streaks; reward progress weekly.</li>
+            </ul>
+            <div class="actions">
+              <button class="btn" style="background:var(--red-600); color:#fff" data-help>Find support with us</button>
+              <a class="btn" href="#resources">Hotlines & programmes</a>
+            </div>
+          </article>
+
+          <article id="hiv" class="topic" aria-labelledby="t-hiv">
+            <img class="thumb" src="TESTING HIV.jpg" alt="HIV awareness ribbon and clinic testing" loading="lazy" decoding="async">
+            <h2 id="t-hiv">Know your status. Protect your future.</h2>
+            <span class="topic-tag">HIV/AIDS</span>
+            <ul>
+              <li>Test regularly if sexually active; use protection correctly.</li>
+              <li>Ask clinics about <strong>PrEP</strong> (before exposure) or <strong>PEP</strong> (within 72h after risk).</li>
+              <li>ART with undetectable viral load = much lower transmission risk.</li>
+              <li>Combine prevention: condoms + testing + honest conversations.</li>
+            </ul>
+            <div class="actions">
+              <a class="btn" href="#resources">Clinics & testing</a>
+              <button class="btn" style="background:var(--red-600); color:#fff" data-help>Ask a counsellor</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="bar" role="note" aria-live="polite">
+          <div>ℹ</div>
+          <div><strong>Important:</strong> Replace placeholder helplines with verified local numbers and clinic links before going live. This site offers general info only—consult qualified professionals.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" aria-labelledby="impact-title">
+      <div class="wrap">
+        <h2 id="impact-title">In our communities</h2>
+        <p class="muted">Real moments of learning, support and safety.</p>
+        <div class="gallery">
+          <img src="AFTER SCHOOL.jpeg" alt="After-school study group" loading="lazy" decoding="async">
+          <img src="STUDENT TALKNING.jpeg" alt="Learner speaking to a counsellor" loading="lazy" decoding="async">
+          <img src="WORKSHOPS.jpg" alt="Community awareness workshop" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section id="resources" class="section" aria-labelledby="res-title">
+      <div class="wrap">
+        <h2 id="res-title">Resources & Helplines (Placeholders)</h2>
+        <p class="muted">Swap these with real SA resources you verify. Add phone numbers, WhatsApp lines, and local clinics.</p>
+        <div class="resources">
+          <article class="res">
+            <h4>Child & Teen Support</h4>
+            <ul>
+              <li>Childline SA — <a href="tel:+27800055555">call childline services</a></li>
+              <li>School Counsellor — <a href="#">Add contact</a></li>
+              <li>Online Safety Tips — <a href="https://safety.google/security/security-tips/">safety tips</a></li>
+            </ul>
+          </article>
+          <article class="res">
+            <h4>GBV & Legal Aid</h4>
+            <ul>
+              <li>GBV Hotline — <a href="tel:+27800150150">0800-150-150</a></li>
+              <li>Legal Aid SA — <a href="https://legal-aid.co.za/">legal-aid services</a></li>
+              <li>Local SAPS — <a href="tel:10111">call you local police for assistences</a></li>
+            </ul>
+          </article>
+          <article class="res">
+            <h4>Health & HIV</h4>
+            <ul>
+              <li>Nearest Clinic — <a href="https://www.unjaniclinic.co.za/patients/">well known testing clinic</a></li>
+              <li>HIV Testing — <a href="https://drtabane.co.za/hiv-clinic/">testing hiv labs</a></li>
+              <li>PrEP/PEP Info — <a href="https://www.who.int/teams/global-hiv-hepatitis-and-stis-programmes/hiv/prevention/pre-exposure-prophylaxis">latest PrEP Information</a></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="wrap">
+        <h2>About this site</h2>
+        <p class="muted">Built as a simple awareness hub to help learners and families find clear steps and support. Content is general information and not a substitute for professional advice.</p>
+        <div class="cards">
+          <article class="card">
+            <h3>Brand & Colours</h3>
+            <p>Primary red + white for bold visibility and urgency. High contrast for readability.</p>
+          </article>
+          <article class="card">
+            <h3>Accessibility</h3>
+            <p>Readable fonts, keyboard focus styles, skip link, and descriptive buttons (e.g., “Get Help”).</p>
+          </article>
+          <article class="card">
+            <h3>Customize</h3>
+            <p>Swap logos, add verified helplines, embed maps to clinics, or connect a simple form backend later.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div>© <span id="year"></span> EduAware SA — Built with care in red & white.</div>
+      <div><a href="mailto:info@keatlegilefoundation.co.za" class="btn" style="background:var(--red-600); color:#fff">Email us</a></div>
+    </div>
+  </footer>
+
+  <!-- GET HELP MODAL -->
+  <dialog id="helpModal" aria-labelledby="helpTitle" aria-describedby="helpDesc">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="helpTitle" style="margin:0;">Get Help — Confidential</h3>
+        <button class="close-x" aria-label="Close" data-close>×</button>
+      </div>
+      <div class="modal-body">
+        <p id="helpDesc" class="muted">Choose a safe way to reach out. Replace placeholders with verified numbers & links for your region.</p>
+        <div class="modal-grid">
+          <div class="card" style="border:none;">
+            <h4>Call / WhatsApp</h4>
+            <p class="muted">Add real helpline numbers here (GBV, Childline, HIV, Substance Abuse).</p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap">
+              <a class="btn" style="background:var(--red-600); color:#fff" href="tel:+27792944401">Call — 079-29-44401</a>
+              <a class="btn" style="background:#fff; border:1px solid var(--border)" href="https://wa.link/tsleyf" target="_blank" rel="noopener">WhatsApp — 079-29-44401</a>
+            </div>
+          </div>
+          <div class="card" style="border:none;">
+            <h4>Email a counsellor</h4>
+            <form id="helpForm">
+              <label for="topic" class="muted">Topic</label>
+              <select id="topic" class="input" aria-label="Topic">
+                <option>Education</option>
+                <option>Bullying</option>
+                <option>GBV</option>
+                <option>Teen Pregnancy</option>
+                <option>Substance Abuse</option>
+                <option>HIV</option>
+              </select>
+              <label for="msg" class="muted" style="margin-top:8px; display:block;">Message</label>
+              <textarea id="msg" rows="4" class="input" placeholder="Write a short note. Do not include sensitive info."></textarea>
+              <button type="submit" class="btn" style="margin-top:10px; background:var(--red-600); color:#fff">Open Email</button>
+            </form>
+          </div>
+        </div>
+        <div class="bar" style="margin-top:14px;">
+          <div>❤</div>
+          <div><strong>Your safety comes first.</strong> If you’re in immediate danger, call emergency services. Save evidence where safe.</div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    // Active nav highlight
+    const sections = ["home","topics","resources","about"];
+    const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+    const setActive = () => {
+      let index = sections.length;
+      while(index--){
+        const s = document.getElementById(sections[index]);
+        if(s && window.scrollY + 120 >= s.offsetTop){
+          navLinks.forEach(a=>a.classList.remove('active'));
+          const link = document.querySelector('header nav a[href="#'+sections[index]+'"]');
+          if(link) link.classList.add('active');
+          break;
+        }
+      }
+    };
+    window.addEventListener('scroll', setActive);
+    setActive();
+
+    // Modal
+    const modal = document.getElementById('helpModal');
+    document.querySelectorAll('[data-help]').forEach(b=> b.addEventListener('click', ()=>{
+      if(typeof modal.showModal === 'function') modal.showModal();
+      else modal.setAttribute('open','open');
+    }));
+    document.querySelectorAll('[data-close]').forEach(b=> b.addEventListener('click', ()=>{
+      if(typeof modal.close === 'function') modal.close();
+      else modal.removeAttribute('open');
+    }));
+    modal?.addEventListener('click', (e)=>{ 
+      const box = modal.querySelector('.modal').getBoundingClientRect();
+      const inside = e.clientX >= box.left && e.clientX <= box.right && e.clientY >= box.top && e.clientY <= box.bottom;
+      if(!inside){ if(typeof modal.close==='function') modal.close(); else modal.removeAttribute('open'); }
+    });
+
+    // Email helper (fixed)
+    document.getElementById('helpForm')?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const topic = document.getElementById('topic').value;
+      const msg = document.getElementById('msg').value.trim();
+      const subject = encodeURIComponent('Help request — ' + topic);
+      const body = encodeURIComponent((msg || '(Your message here)') + '\n\n— Sent from EduAware SA');
+      window.location.href = "mailto:info@keatlegilefoundation.co.za?subject=${subject}&body=${body}";
+    });
+
+    // Mobile menu toggle
+    const headerEl = document.querySelector('header');
+    const toggleBtn = document.querySelector('.menu-toggle');
+    toggleBtn?.addEventListener('click', ()=>{
+      const isOpen = headerEl.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+    // Close menu when a link is clicked
+    document.querySelectorAll('#mainmenu a, #mainmenu .btn').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        headerEl.classList.remove('open');
+        toggleBtn?.setAttribute('aria-expanded','false');
+      });
+    });
+    // Close on ESC or when resizing to desktop
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ headerEl.classList.remove('open'); toggleBtn?.setAttribute('aria-expanded','false'); }});
+    window.addEventListener('resize', ()=>{ if(window.innerWidth > 640){ headerEl.classList.remove('open'); toggleBtn?.setAttribute('aria-expanded','false'); }});
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
